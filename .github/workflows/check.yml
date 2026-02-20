@@ -5,12 +5,12 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: ./
-      - run: cim -v
+      - run: cim -V
       - uses: ./
         with:
           path: ${{ runner.temp }}/cim-v0.1.0
           revision: v0.1.0-alpha
-      - run: cim -v
+      - run: cim -V
     strategy:
       matrix:
         os: [macos-15, macos-15-intel, ubuntu-24.04-arm, ubuntu-24.04, windows-11-arm, windows-2025]
