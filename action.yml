@@ -16,7 +16,7 @@ runs:
     - env:
         REPOSITORY: ${{ inputs.repository }}
         REVISION: ${{ inputs.revision }}
-      run: git clone -n --depth 1 --filter tree:0 ${{ inputs.revision && '--revision "$REVISION"' }} "$REPOSITORY" ${{ runner.temp }}/cim
+      run: git clone -n --depth 1 --filter tree:0 ${{ inputs.revision && '--revision "$REVISION"' }} "$REPOSITORY" "${{ runner.temp }}/cim"
       shell: bash
     - id: sha
       run: echo "sha=$(git rev-parse HEAD)" > $GITHUB_OUTPUT
@@ -35,6 +35,6 @@ runs:
       run: cargo build --release
       shell: bash
       working-directory: ${{ runner.temp }}/cim
-    - run: echo "${{ runner.temp }}/cim/target/release" >> $GITHUB_PATH
+    - run: echo "${{ runner.temp }}/cim/target/release" > $GITHUB_PATH
       shell: bash
   using: composite
