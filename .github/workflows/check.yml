@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://schemastore.org/github-workflow
+jobs:
+  check:
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@main
+      - uses: ./
+      - run: cim -v
+      - uses: ./
+        with:
+          revision: v0.1.0-alpha
+      - run: cim -v
+    strategy:
+      matrix:
+        os: [macos-15, macos-15-intel, ubuntu-24.04-arm, ubuntu-24.04, windows-11-arm, windows-2025]
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches: [master]
