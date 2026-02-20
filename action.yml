@@ -5,6 +5,9 @@ branding:
   icon: image
 description: Convert between various image formats. (SVG to PNG) (PNG to JPEG) (JPEG to PNG) (SVG to PNG custom size)
 inputs:
+  path:
+    default: ${{ runner.temp }}/cim
+    description: 'The path of CIM.'
   repository:
     default: https://github.com/feraxhp/cim
     description: 'The repository of CIM.'
@@ -14,27 +17,30 @@ name: Setup CIM
 runs:
   steps:
     - env:
+        CIM_HOME: ${{ inputs.path }}
         REPOSITORY: ${{ inputs.repository }}
         REVISION: ${{ inputs.revision }}
-      run: git clone -n --depth 1 --filter tree:0 ${{ inputs.revision && '--revision "$REVISION"' }} "$REPOSITORY" "${{ runner.temp }}/cim"
+      run: git clone -n --depth 1 --filter tree:0 ${{ inputs.revision && '--revision "$REVISION"' }} "$REPOSITORY" "$CIM_HOME"
       shell: bash
     - id: sha
       run: echo "sha=$(git rev-parse HEAD)" > $GITHUB_OUTPUT
       shell: bash
-      working-directory: ${{ runner.temp }}/cim
+      working-directory: ${{ inputs.path }}
     - id: cache
       uses: actions/cache@v4
       with:
         key: cim-${{ runner.arch }}-${{ runner.os }}-${{ steps.sha.outputs.sha }}
-        path: ${{ runner.temp }}/cim
+        path: ${{ inputs.path }}
     - if: ${{ steps.cache.outputs.cache-hit != 'true' }}
       run: git checkout
       shell: bash
-      working-directory: ${{ runner.temp }}/cim
+      working-directory: ${{ inputs.path }}
     - if: ${{ steps.cache.outputs.cache-hit != 'true' }}
       run: cargo build --release
       shell: bash
-      working-directory: ${{ runner.temp }}/cim
-    - run: echo "${{ runner.temp }}/cim/target/release" > $GITHUB_PATH
+      working-directory: ${{ inputs.path }}
+    - env:
+        CIM_HOME: ${{ inputs.path }}
+      run: echo "$CIM_HOME/target/release" > $GITHUB_PATH
       shell: bash
   using: composite

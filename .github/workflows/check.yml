@@ -8,6 +8,7 @@ jobs:
       - run: cim -v
       - uses: ./
         with:
+          path: ${{ runner.temp }}/cim-v0.1.0
           revision: v0.1.0-alpha
       - run: cim -v
     strategy:
