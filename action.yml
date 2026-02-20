@@ -6,7 +6,7 @@ branding:
 description: Convert between various image formats. (SVG to PNG) (PNG to JPEG) (JPEG to PNG) (SVG to PNG custom size)
 inputs:
   repository:
-    default: https://github.com/feraxhp/cim.git
+    default: https://github.com/feraxhp/cim
     description: 'The repository of CIM.'
   revision:
     description: 'The branch, tag or SHA of CIM.'
@@ -27,11 +27,11 @@ runs:
       with:
         key: cim-${{ runner.arch }}-${{ runner.os }}-${{ steps.sha.outputs.sha }}
         path: ${{ runner.temp }}/cim
-    - if: 'steps.cache.outputs.cache-hit == "false"'
+    - if: ${{ steps.cache.outputs.cache-hit == 'false' }}
       run: git checkout
       shell: bash
       working-directory: ${{ runner.temp }}/cim
-    - if: 'steps.cache.outputs.cache-hit == "false"'
+    - if: ${{ steps.cache.outputs.cache-hit == 'false' }}
       run: cargo build --release
       shell: bash
       working-directory: ${{ runner.temp }}/cim
