@@ -30,7 +30,9 @@ runs:
       uses: actions/cache@v4
       with:
         key: cim-${{ runner.arch }}-${{ runner.os }}-${{ steps.sha.outputs.sha }}
-        path: ${{ inputs.path }}
+        path: |
+          ${{ inputs.path }}/target/release/cim
+          ${{ inputs.path }}/target/release/cim.exe
     - if: ${{ steps.cache.outputs.cache-hit != 'true' }}
       run: git checkout
       shell: bash
