@@ -4,6 +4,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@main
+      - if: ${{ runner.arch == 'x64' && runner.os == 'Linux' }}
+        uses: pipeline-components/yamllint@6f941ff8c835abdf308ce87a8ba9de37b088658a
       - uses: ./
       - run: cim -V
       - uses: ./
@@ -22,6 +24,8 @@ jobs:
           - windows-2025
 on:
   pull_request:
-    branches: [master]
+    branches:
+      - master
   push:
-    branches: [master]
+    branches:
+      - master

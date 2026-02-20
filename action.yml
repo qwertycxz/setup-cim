@@ -7,12 +7,12 @@ description: Convert between various image formats. (SVG to PNG) (PNG to JPEG) (
 inputs:
   path:
     default: ${{ runner.temp }}/cim
-    description: 'The path of CIM.'
+    description: The path of CIM.
   repository:
     default: https://github.com/feraxhp/cim
-    description: 'The repository of CIM.'
+    description: The repository of CIM.
   revision:
-    description: 'The branch, tag or SHA of CIM.'
+    description: The branch, tag or SHA of CIM.
 name: Setup CIM
 runs:
   steps:
