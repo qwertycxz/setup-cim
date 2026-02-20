@@ -27,11 +27,11 @@ runs:
       with:
         key: cim-${{ runner.arch }}-${{ runner.os }}-${{ steps.sha.outputs.sha }}
         path: ${{ runner.temp }}/cim
-    - if: ${{ steps.cache.outputs.cache-hit == 'false' }}
+    - if: ${{ steps.cache.outputs.cache-hit != 'true' }}
       run: git checkout
       shell: bash
       working-directory: ${{ runner.temp }}/cim
-    - if: ${{ steps.cache.outputs.cache-hit == 'false' }}
+    - if: ${{ steps.cache.outputs.cache-hit != 'true' }}
       run: cargo build --release
       shell: bash
       working-directory: ${{ runner.temp }}/cim
