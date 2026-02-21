@@ -1,11 +1,11 @@
 # setup-cim
 
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/t/qwertycxz/setup-cim)](https://github.com/qwertycxz/setup-cim)
-[![GitHub commits since latest release](https://img.shields.io/github/commits-since/qwertycxz/setup-cim/latest)](https://github.com/qwertycxz/setup-cim)
+[![GitHub commits since latest release](https://img.shields.io/github/commits-since/qwertycxz/setup-cim/latest)](https://github.com/marketplace/actions/setup-cim)
 [![GitHub contributors](https://img.shields.io/github/contributors/qwertycxz/setup-cim)](https://github.com/qwertycxz/setup-cim)
 [![GitHub Created At](https://img.shields.io/github/created-at/qwertycxz/setup-cim)](https://github.com/qwertycxz/setup-cim)
 [![GitHub last commit](https://img.shields.io/github/last-commit/qwertycxz/setup-cim)](https://github.com/qwertycxz/setup-cim)
-[![GitHub Release Date](https://img.shields.io/github/release-date/qwertycxz/setup-cim)](https://github.com/qwertycxz/setup-cim)
+[![GitHub Release Date](https://img.shields.io/github/release-date/qwertycxz/setup-cim)](https://github.com/marketplace/actions/setup-cim)
 [![GitHub branch check runs](https://img.shields.io/github/check-runs/qwertycxz/setup-cim/master)](https://github.com/qwertycxz/setup-cim)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/qwertycxz)](https://ko-fi.com/qwertycxz)
 [![GitHub Issues](https://img.shields.io/github/issues-closed/qwertycxz/setup-cim)](https://github.com/qwertycxz/setup-cim/issues)
@@ -21,14 +21,14 @@
 
 This action install a version of [CIM](https://github.com/feraxhp/cim), add it to the PATH, and cache it.
 
-Arm64 and x64 architectures are both supported.
+MacOS, Linux and Windows on both arm64 and x64 architectures are supported.
 
 ## Usage
 
 See [action.yml](./action.yml).
 
 ```yml
-- uses: qwertycxz/setup-cim@master
+- uses: qwertycxz/setup-cim@master # or pin to a SHA, which is recommended by GitHub.
   with:
     # The path of CIM.
     # Default: ${{ runner.temp }}/cim.
