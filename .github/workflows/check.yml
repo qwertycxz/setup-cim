@@ -29,3 +29,5 @@ on:
   push:
     branches:
       - master
+permissions:
+  contents: read
