@@ -7,11 +7,8 @@ jobs:
       - if: ${{ runner.arch == 'x64' && runner.os == 'Linux' }}
         uses: pipeline-components/yamllint@6f941ff8c835abdf308ce87a8ba9de37b088658a
       - uses: ./
-      - run: cim -V
-      - uses: ./
         with:
-          path: ${{ runner.temp }}/cim-v0.1.0
-          revision: v0.1.0-alpha
+          revision: feat/build
       - run: cim -V
     strategy:
       matrix:
@@ -23,11 +20,8 @@ jobs:
           - windows-11-arm
           - windows-2025
 on:
-  pull_request:
-    branches:
-      - master
   push:
     branches:
-      - master
+      - test-260227
 permissions:
   contents: read
