@@ -5,7 +5,7 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - if: ${{ runner.arch == 'x64' && runner.os == 'Linux' }}
-        uses: pipeline-components/yamllint@edb59376f43869220e96c2ee121a478338c7ee5d
+        uses: pipeline-components/yamllint@d977118a71dcd79ac575885f22a2b318cc5fa128
       - uses: ./
       - run: cim -V
       - uses: ./
